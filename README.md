@@ -1,4 +1,4 @@
-```markdown
+
 # Projekt- und Kundenmanagement-System
 
 Ein maßgeschneidertes, webbasiertes System zur Verwaltung von Projekten, Kunden, Zeiterfassungen und automatisierten Abrechnungen. Diese Anwendung basiert auf nativem PHP und einer relationalen SQL-Datenbank (PDO) und wurde umfassend auf moderne Sicherheits- und Stabilitätsstandards optimiert.
