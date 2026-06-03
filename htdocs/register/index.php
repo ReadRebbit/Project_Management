@@ -75,7 +75,7 @@ if ($_SESSION["permission_level"] <= 3) {
                 <input type="text" name="username" placeholder="Username" required><br>
                 <div style="position: relative;">
                     <input type="password" id="pw" name="pw" placeholder="Passwort" required onkeyup="validatePasswords()">
-                    <span id="togglePw1" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁</span>
+                    <span id="togglePw1" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">show</span>
                 </div>
                 <br>
                 <div style="position: relative;">
