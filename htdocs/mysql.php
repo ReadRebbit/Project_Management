@@ -118,7 +118,7 @@ $user_name = $high_admin_name;
 $sqldatabase = $database;
 
 try {
-    $mysql = new PDO("mysql:host=$host", $user, $password);
+    $mysql = new PDO("mysql:host=$host;charset=utf8mb4", $user, $password);
     $mysql->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $mysql->exec("CREATE DATABASE IF NOT EXISTS $database");
