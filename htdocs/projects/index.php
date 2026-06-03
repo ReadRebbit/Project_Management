@@ -211,7 +211,7 @@ if ($timeResult) {
                     }else{ ?>
                     ---
                     <?php } ?></p>
-    <p>Erstellt: <?php echo date('d.m.Y', $crea_date); ?></p>
+    <p>Erstellt: <?php echo date('d.m.Y', strtotime($crea_date)); ?></p>
     <p>
         Status:
         <?= renderProjectStatusBadge($projectStatus, true); ?>
