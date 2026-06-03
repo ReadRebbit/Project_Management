@@ -194,5 +194,3 @@ The environment initializes its relational schema tables and configurations thro
 * **Windows Environment:** Delete `setup.php` via File Explorer or command line.
 * **Linux Environment:** Execute `sudo rm /var/www/html/setup.php`
 
-```
-
