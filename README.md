@@ -26,44 +26,6 @@ The core application logic was significantly upgraded during a comprehensive ref
 
 ---
 
-## System Architecture & Directory Layout
-
-The codebase enforces a clean separation of concerns, isolating public-facing entry points, system configurations, automated tasks, and third-party vendor dependencies:
-
-```text
-/server
-│
-├── /htdocs (Linux: /html)     --> Publicly accessible web document root (Frontend & Backend)
-│   ├── /admin                  --> Admin dashboards, analytical tools, and KPI metrics
-│   ├── /clients                --> Client onboarding and overview grids
-│   ├── /css                    --> Core UI stylesheets and layout configurations
-│   ├── /docx                   --> Document generation templates (Word/DOCX templates)
-│   ├── /edit_client            --> Administrative client data editing masks
-│   ├── /edit_project           --> Project scope modifiers and detail views
-│   ├── /edit_time              --> Time tracking log auditing interfaces
-│   ├── /js                     --> JavaScript handlers (AJAX cycles, real-time validations)
-│   ├── /log                    --> System audit logs and diagnostic displays
-│   ├── /login                  --> Secure session authentication pathways
-│   ├── /projects               --> Primary project list indexes
-│   ├── /register               --> User creation and initial privilege provisioning
-│   ├── /settings               --> Global application runtime toggles
-│   ├── /users                  --> Identity management and account directories
-│   ├── /write_bill             --> Aggregated financial data & invoice previews
-│   ├── index.php               --> Main central dashboard and application entry point
-│   ├── logout.php              --> Safe session destruction handler
-│   └── session_logout.php      --> Background session lifecycle monitor
-│
-├── /vendor                     --> Third-party PHP dependencies and libraries (e.g., dompdf)
-├── /backups                    --> Local secure storage for automated database snapshots
-├── backup_cron.php             --> Background cron task engine for automated database archiving
-├── config.php                  --> Secure credentials store for database and API connections
-├── setup.php                   --> Automated deployment initializer and system installer
-└── sql_backup.sql              --> Core relational schema & default table structures
-
-```
-
----
-
 ## Configuration
 
 ### Database and Admin Configuration (config.php)
@@ -158,7 +120,3 @@ The environment initializes its relational schema tables and configurations smoo
 * **Linux Environment:** Execute `sudo rm /var/www/html/setup.php`
 
 
-
-```
-
-```
