@@ -33,7 +33,8 @@ Das System folgt einer strikten Trennung von öffentlich zugänglichen Webseiten
 │   ├── logout.php           --> Sichere Beendigung der Benutzersitzung
 │   └── session_loguot.php   --> Sitzungsverwaltung und Session-Terminierung
 │
-├── /vendor                  --> PHP-Abhängigkeiten und externe Bibliotheken (z. B. dompdf)
+├── /libraries               --> PHP-Abhängigkeiten und externe Bibliotheken (dompdf)
+├── /vendor                  --> PHP-Abhängigkeiten und externe Bibliotheken (phpOffice)
 ├── /backups                 --> Lokales Verzeichnis für automatisierte Datenbanksicherungen
 ├── backup_cron.php          --> Hintergrund-Skript zur automatisierten Datenbanksicherung
 ├── config.php               --> Zentrale Konfigurationsdatei für die Datenbank-Zugangsdaten
