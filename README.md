@@ -1,151 +1,151 @@
-# Project & Customer Management System
+# Projekt- & Kundenmanagementsystem
 
-A bespoke, high-performance web platform tailored for managing projects, clients, time tracking, and automated invoicing. Built with native PHP and a relational SQL database using PDO, this application has undergone extensive security hardening and architectural refactoring to meet modern production and enterprise standards.
+Eine maßgeschneiderte, performante Webplattform zur Verwaltung von Projekten, Kunden, Arbeitszeiten und automatisierter Rechnungsstellung. Entwickelt mit nativem PHP und einer relationalen SQL-Datenbank über PDO, wurde diese Anwendung umfassenden Sicherheitsoptimierungen und architektonischen Refactorings unterzogen, um modernen Produktions- und Unternehmensstandards zu entsprechen.
 
 ---
 
-## Architecture & Directory Layout
+## Architektonischer Aufbau & Ordnerstruktur
 
-The application enforces a strict separation between the publicly accessible web root, core system configuration, document templates, and backend dependencies:
+Die Anwendung erzwingt eine strikte Trennung zwischen dem öffentlich zugänglichen Web-Verzeichnis (Web-Root), der zentralen Systemkonfiguration, den Dokumentenvorlagen und den Backend-Abhängigkeiten:
 
 
 ```
 
 .
-├── htdocs/                         # Public web directory (Frontend & Backend)
-│   ├── admin/                      # Administrative dashboards, KPIs and system overview
-│   ├── backup/                     # Backup management and restore interface
-│   ├── change_password/            # User self-service password management
-│   ├── change_password_admin/      # Administrative password reset functions
-│   ├── clients/                    # Client management views and handlers
-│   ├── css/                        # Application stylesheets and UI components
-│   ├── docx/                       # Protected document templates for invoice exports
-│   ├── download/                   # Generated file download endpoints
-│   ├── edit_client/                # Client data modification forms
-│   ├── edit_project/               # Project editing and assignment management
-│   ├── edit_time/                  # Time log corrections and adjustments
-│   ├── js/                         # JavaScript components (AJAX, validation, UI helpers)
-│   ├── log/                        # Audit logs and system activity monitoring
-│   ├── login/                      # Authentication gateway and session creation
-│   ├── projects/                   # Project overview, planning and uploads
-│   │   └── uploads/                # Project-related file attachments
-│   ├── register/                   # User registration and permission assignment
-│   ├── settings/                   # Application settings and configuration panels
-│   ├── users/                      # User administration and role management
-│   ├── write_bill/                 # Invoice generation and billing preparation
-│   ├── add_client.php              # Create new client records
-│   ├── add_project.php             # Create new projects
-│   ├── add_time.php                # Create new time entries
-│   ├── backup.php                  # Manual backup execution
-│   ├── change_pw.php               # Password update processing
-│   ├── change_pw_admin.php         # Administrative password update processing
-│   ├── delete_client.php           # Client deletion handler
-│   ├── delete_project.php          # Project deletion handler
-│   ├── delete_time.php             # Time entry deletion handler
-│   ├── delete_user.php             # User removal handler
-│   ├── edit_amount.php             # Billing amount adjustments
-│   ├── edit_checklist.php          # Project checklist management
-│   ├── edit_client_process.php     # Client update processing logic
-│   ├── edit_order.php              # Order and billing sequence updates
-│   ├── edit_project_client.php     # Client assignment updates for projects
-│   ├── edit_project_process.php    # Project update processing logic
-│   ├── edit_project_user.php       # User assignment management for projects
-│   ├── edit_time.php               # Time entry update processing
-│   ├── export.php                  # Data export functionality
-│   ├── generate_word.php           # DOCX invoice/document generation
-│   ├── get_amount.php              # Dynamic billing amount retrieval
-│   ├── get_client.php              # AJAX client information endpoint
-│   ├── mysql.php                   # Database abstraction and helper functions
-│   ├── session_loguot.php          # Automatic session timeout handling
-│   ├── settings.php                # Settings persistence controller
-│   ├── setup.php                   # Web-based installation and initialization
-│   ├── update_filter.php           # Dashboard filter updates
-│   ├── update_permission.php       # User permission management
-│   ├── update_project_status.php   # Project workflow status updates
-│   ├── upload.php                  # File upload processing
-│   ├── index.php                   # Primary dashboard and application entry point
-│   └── logout.php                  # Secure session termination
+├── htdocs/                         # Öffentlich zugängliches Web-Verzeichnis (Frontend & Backend)
+│   ├── admin/                      # Administrative Dashboards, KPIs und Systemübersicht
+│   ├── backup/                     # Backup-Verwaltung und Wiederherstellungs-Schnittstelle
+│   ├── change_password/            # Passwort-Selbstverwaltung für Benutzer
+│   ├── change_password_admin/      # Administrative Funktionen zum Zurücksetzen von Passworten
+│   ├── clients/                    # Ansichten und Verarbeitungsdateien zur Kundenverwaltung
+│   ├── css/                        # Stylesheets und UI-Komponenten der Anwendung
+│   ├── docx/                       # Geschützte Dokumentenvorlagen für den Rechnungsexport
+│   ├── download/                   # Download-Endpunkte für generierte Dateien
+│   ├── edit_client/                # Formulare zur Bearbeitung von Kundendaten
+│   ├── edit_project/               # Projektbearbeitung und Zuweisungsverwaltung
+│   ├── edit_time/                  # Korrektur und Anpassung von Zeiterfassungseinträgen
+│   ├── js/                         # JavaScript-Komponenten (AJAX, Validierung, UI-Helfer)
+│   ├── log/                        # Audit-Logs und Überwachung der Systemaktivitäten
+│   ├── login/                      # Authentifizierungs-Schnittstelle und Sitzungserstellung
+│   ├── projects/                   # Projektübersicht, -planung und Datei-Uploads
+│   │   └── uploads/                # Projektbezogene Dateianhänge
+│   ├── register/                   # Benutzerregistrierung und Rechtevergabe
+│   ├── settings/                   # Systemeinstellungen und Konfigurationsmasken
+│   ├── users/                      # Benutzerverwaltung und Rollenzuweisung
+│   ├── write_bill/                 # Rechnungsgenerierung und Abrechnungsvorbereitung
+│   ├── add_client.php              # Erstellung neuer Kundendatensätze
+│   ├── add_project.php             # Erstellung neuer Projekte
+│   ├── add_time.php                # Erstellung neuer Zeiterfassungseinträge
+│   ├── backup.php                  # Manuelle Ausführung von Datenbanksicherungen
+│   ├── change_pw.php               # Verarbeitung von Passwortänderungen
+│   ├── change_pw_admin.php         # Administrative Verarbeitung von Passwortänderungen
+│   ├── delete_client.php           # Logik zum Löschen von Kunden
+│   ├── delete_project.php          # Logik zum Löschen von Projekten
+│   ├── delete_time.php             # Logik zum Löschen von Zeiterfassungseinträgen
+│   ├── delete_user.php             # Logik zum Entfernen von Benutzern
+│   ├── edit_amount.php             # Anpassung von Abrechnungsbeträgen
+│   ├── edit_checklist.php          # Verwaltung von Projekt-Checklisten
+│   ├── edit_client_process.php     # Verarbeitungslogik für Aktualisierungen von Kundendaten
+│   ├── edit_order.php              # Aktualisierung von Auftrags- und Abrechnungsreihenfolgen
+│   ├── edit_project_client.php     # Aktualisierung der Kundenzuweisung bei Projekten
+│   ├── edit_project_process.php    # Verarbeitungslogik für Projektaktualisierungen
+│   ├── edit_project_user.php       # Verwaltung der Benutzerzuweisungen bei Projekten
+│   ├── edit_time.php               # Verarbeitungslogik für Zeiterfassungsaktualisierungen
+│   ├── export.php                  # Funktionen zum Datenexport
+│   ├── generate_word.php           # DOCX-Rechnungs- und Dokumentengenerierung
+│   ├── get_amount.php              # Dynamischer Abruf von Abrechnungsbeträgen
+│   ├── get_client.php              # AJAX-Endpunkt für Kundeninformationen
+│   ├── mysql.php                   # Datenbankabstraktion und Helper-Funktionen
+│   ├── session_loguot.php          # Automatisches Handling von Sitzungs-Timeouts
+│   ├── settings.php                # Controller zur Speicherung von Systemeinstellungen
+│   ├── setup.php                   # Webbasierte Installation und Initialisierung
+│   ├── update_filter.php           # Aktualisierung der Dashboard-Filter
+│   ├── update_permission.php       # Verwaltung von Benutzerberechtigungen
+│   ├── update_project_status.php   # Statusaktualisierungen im Projekt-Workflow
+│   ├── upload.php                  # Verarbeitung von Dateiuploads
+│   ├── index.php                   # Haupt-Dashboard und primärer Einstiegspunkt der Anwendung
+│   └── logout.php                  # Sichere Beendigung der Benutzersitzung
 │
-├── backups/                        # Automated database backup storage
-│   └── temp_restore/               # Temporary restore workspace
+├── backups/                        # Speicherort für automatisierte Datenbanksicherungen
+│   └── temp_restore/               # Temporärer Arbeitsbereich für Wiederherstellungen
 │
-├── libraries/                      # Custom helper libraries and utilities
-├── vendor/                         # Third-party PHP dependencies (Composer)
-├── README.md                       # Project documentation and setup guide
-├── backup_cron.php                 # Scheduled backup automation script
-├── config.php                      # Central environment and database configuration
-└── sql_backup.sql                  # Database schema and backup snapshot
+├── libraries/                      # Eigene Helper-Bibliotheken und Hilfsprogramme
+├── vendor/                         # Externe PHP-Abhängigkeiten (Composer)
+├── README.md                       # Projektdokumentation und Installationsanleitung
+├── backup_cron.php                 # Skript zur Automatisierung geplanter Sicherungen
+├── config.php                      # Zentrale Umgebungs- und Datenbankkonfiguration
+└── sql_backup.sql                  # Datenbank-Schema und Backup-Snapshot
 
 ```
 
 ---
 
-## Key Features
+## Hauptmerkmale
 
-* **Client & Project Lifecycle Management:** Dedicated modules for onboarding clients, tracking ongoing project statuses, and evaluating administrative KPIs.
-* **Granular Time Tracking:** Integrated work-hour logging with administrative tools for record correction, verification, and compliance checking.
-* **Automated Billing Pipeline:** Aggregated data previews that dynamically pull logged hours and client rates to generate comprehensive billing previews and document exports.
-* **Multi-Tenant User Management:** Secure login interfaces, user registration routes, and permission/role allocation levels.
-
----
-
-## Security Hardening & Architectural Refactoring
-
-The core application logic was significantly upgraded during a comprehensive refactoring phase to neutralize common web application vulnerabilities:
-
-* **SQL Injection (SQLi) Elimination:** Converted over 40 raw, string-interpolated query paths across critical entities (Projects, Clients, Time Logs, and Upload fields) into safe, parameterized **PDO Prepared Statements**. This strictly separates user input from database execution logic.
-* **Cross-Site Scripting (XSS) Mitigation:** Implemented strict context-aware output sanitization across more than 17 view templates using a native escaping helper `h()`. Safe variable injection into JavaScript scopes is handled via dynamic JSON script serialization (`pm_json_script()`).
-* **Architectural Clean-up & Modularization (DRY Principle):** Eliminated structural redundancies by extracting repetitive checks (such as role permissions and site configurations) into efficient, centralized helper functions inside `mysql.php`.
-* **Privilege Separation:** Refactored the logging ecosystem (`log.php`) to isolate operational libraries from controller execution paths. This strictly prevents non-privileged sessions from triggering sensitive API calls while protecting administrative interfaces using strict query-table whitelists.
-* **Stability Fixes:** Corrected logical validation errors in the project creation workflow (`add_project.php`) and fixed pluralization parsing routines in the file exporter modules (`generate_word.php`).
+* **Kunden- & Projekt-Lebenszyklus-Management:** Dedizierte Module für das Onboarding von Kunden, die Verfolgung laufender Projektstati und die Evaluierung administrativer KPIs.
+* **Granulare Zeiterfassung:** Integrierte Erfassung von Arbeitsstunden mit administrativen Werkzeugen zur Korrektur, Verifizierung und Compliance-Prüfung von Datensätzen.
+* **Automatisierte Abrechnungs-Pipeline:** Aggregierte Datenvorschauen, die gebuchte Stunden und Kundensätze dynamisch zusammenführen, um umfassende Abrechnungsübersichten und Dokumentenexporte zu generieren.
+* **Mehrbenutzerverwaltung (Multi-Tenant):** Sichere Login-Schnittstellen, Routen zur Benutzerregistrierung sowie fein abgestufte Berechtigungs- und Rollenzuweisungen.
 
 ---
 
-## Configuration
+## Sicherheits-Hardening & Architektonisches Refactoring
 
-### Database and Admin Configuration (config.php)
+Die Kernlogik der Anwendung wurde in einer umfassenden Refactoring-Phase signifikant aufgewertet, um gängige Schwachstellen von Webanwendungen vollständig zu eliminieren:
 
-The `config.php` file handles essential environment variables for database connectivity and master administrator authentication. Before running the application, ensure these variables match your local or production environment setup:
+* **Eliminierung von SQL-Injections (SQLi):** Umstellung von über 40 unverschlüsselten, string-interpolierten Abfragepfaden in kritischen Entitäten (Projekte, Kunden, Zeiterfassung und Upload-Felder) auf sichere, parametrisierte **PDO Prepared Statements**. Dies trennt Benutzereingaben strikt von der Ausführungslogik der Datenbank.
+* **Prävention von Cross-Site Scripting (XSS):** Implementierung einer strikten, kontextsensitiven Ausgabebereinigung in mehr als 17 View-Templates über den nativen Maskierungs-Helper `h()`. Die sichere Injektion von Variablen in JavaScript-Kontexte wird durch dynamische JSON-Skript-Serialisierung (`pm_json_script()`) gewährleistet.
+* **Architektonische Bereinigung & Modularisierung (DRY-Prinzip):** Eliminierung struktureller Redundanzen durch das Auslagern wiederkehrender Prüfungen (wie Rollenberechtigungen und Konfigurationen) in effiziente, zentralisierte Helper-Funktionen innerhalb der `mysql.php`.
+* **Berechtigungstrennung (Privilege Separation):** Refactoring des Logging-Systems (`log.php`), um operative Bibliotheken von den Ausführungspfaden der Controller zu isolieren. Dies verhindert zuverlässig, dass nicht-privilegierte Sitzungen sensible API-Aufrufe auslösen, während administrative Schnittstellen durch strikte Abfragetabellen-Whitelists geschützt bleiben.
+* **Stabilitäts- und Fehlerbehebungen:** Behebung logischer Validierungsfehler im Workflow zur Projekterstellung (`add_project.php`) und Korrektur der Pluralisierungs-Parsing-Routinen in den Dokumenten-Exportmodulen (`generate_word.php`).
+
+---
+
+## Konfiguration
+
+### Datenbank- und Admin-Konfiguration (config.php)
+
+Die Datei `config.php` verwaltet essenzielle Umgebungsvariablen für die Datenbankverbindung und die Authentifizierung des Hauptadministrators. Stellen Sie vor der Ausführung der Anwendung sicher, dass diese Variablen mit Ihrer lokalen Umgebung oder Ihrer Produktionsumgebung übereinstimmen:
 
 ```php
 <?php
-$host = "localhost";       // Database server hostname (e.g., localhost or an IP address)
-$user = "root";            // Database username
-$password = "";            // Database password
-$database = "PM_System";   // Relational database name
-$high_admin_pw = "admin";  // Master administrator password for high-privilege operations
-$high_admin_name = "admin";// Master administrator username
+$host = "localhost";       // Hostname des Datenbankservers (z. B. localhost oder eine IP-Adresse)
+$user = "root";            // Datenbank-Benutzername
+$password = "";            // Datenbank-Passwort
+$database = "PM_System";   // Name der relationalen Datenbank
+$high_admin_pw = "admin";  // Passwort des Hauptadministrators für hoch-privilegierte Operationen
+$high_admin_name = "admin";// Benutzername des Hauptadministrators
 ?>
 
 ```
 
-### Document Templates (docx folder)
+### Dokumentenvorlagen (docx-Ordner)
 
-The system includes a `/docx` directory containing pre-configured file templates used for exports and reporting.
+Das System enthält ein `/docx`-Verzeichnis mit vorkonfigurierten Dateivorlagen für Exporte und Berichte.
 
-* These templates must be adapted to fit your specific design or reporting standards before deployment.
-* **Note:** While you can edit these files manually in the file system, the platform provides a built-in management option, allowing administrators to modify and update these templates directly through the web user interface.
+* Diese Vorlagen müssen vor dem Deployment an Ihr spezifisches Corporate Design oder Ihre Berichtstandards angepasst werden.
+* **Hinweis:** Während Sie diese Dateien manuell im Dateisystem bearbeiten können, bietet die Plattform eine integrierte Verwaltungsoption, mit der Administratoren diese Vorlagen direkt über die Weboberfläche modifizieren und aktualisieren können.
 
 ---
 
-## Deployment & Installation Guide
+## Bereitstellung & Installationsanleitung
 
-### 1. General System Requirements
+### 1. Allgemeine Systemvoraussetzungen
 
-* **PHP Runtime:** Version 7.0 or higher
-* **Web Server:** Apache HTTP Server (with `mod_rewrite` enabled)
-* **Database Engine:** MySQL or MariaDB instance
+* **PHP-Laufzeitumgebung:** Version 7.0 oder höher
+* **Webserver:** Apache HTTP Server (mit aktiviertem `mod_rewrite`)
+* **Datenbank-Engine:** MySQL- oder MariaDB-Instanz
 
-### 2. Local Setup on Windows (via XAMPP)
+### 2. Lokale Einrichtung unter Windows (über XAMPP)
 
-1. Launch the **XAMPP Control Panel** and start both the **Apache** and **MySQL** modules.
-2. Copy the contents of the `/htdocs` folder into your local root directory: `C:\xampp\htdocs`.
-3. Move the `/vendor` and `/docx` directories, along with `backup_cron.php`, `config.php`, and `setup.php`, into the same root folder (`C:\xampp\htdocs`).
-4. Proceed to the Automated First-Time Setup instructions below.
+1. Öffnen Sie das **XAMPP Control Panel** und starten Sie sowohl das **Apache**- als auch das **MySQL**-Modul.
+2. Kopieren Sie den Inhalt des Ordners `/htdocs` in Ihr lokales Stammverzeichnis: `C:\xampp\htdocs`.
+3. Verschieben Sie die Verzeichnisse `/vendor` und `/docx` zusammen mit `backup_cron.php`, `config.php` und `setup.php` in denselben Stammordner (`C:\xampp\htdocs`).
+4. Fahren Sie mit den Anweisungen für die automatische Ersteinrichtung fort.
 
-### 3. Server Deployment on Linux (Debian / Ubuntu)
+### 3. Server-Bereitstellung unter Linux (Debian / Ubuntu)
 
-1. Install the baseline environment packages via your system package manager:
+1. Installieren Sie die grundlegenden Umgebungspakete über den Paketmanager Ihres Systems:
 
 ```bash
 sudo apt update
@@ -153,13 +153,13 @@ sudo apt install apache2 mysql-server php libapache2-mod-php php-mysql
 
 ```
 
-2. Deploy the core web directories to your server document root:
+2. Kopieren Sie die Kern-Webverzeichnisse in das Dokumenten-Stammverzeichnis Ihres Servers:
 
-* Map the contents of `/htdocs` to `/var/www/html`
-* Map the `/vendor` dependencies folder to `/var/www/vendor`
-* Ensure `backup_cron.php`, `config.php`, and `setup.php` sit inside `/var/www/html`
+* Verknüpfen Sie den Inhalt von `/htdocs` mit `/var/www/html`
+* Verknüpfen Sie den Abhängigkeitsordner `/vendor` mit `/var/www/vendor`
+* Stellen Sie sicher, dass `backup_cron.php`, `config.php` und `setup.php` innerhalb von `/var/www/html` liegen
 
-3. Provision proper system ownership and file permissions to permit the webserver user thread to execute the application cleanly:
+3. Richten Sie die korrekten Systembesitzrechte und Dateiberechtigungen ein, damit der Benutzer-Thread des Webservers die Anwendung sauber ausführen kann:
 
 ```bash
 sudo chown -R www-data:www-data /var/www/html
@@ -167,29 +167,28 @@ sudo chmod -R 755 /var/www/html
 
 ```
 
-### 4. NAS Deployment on Synology NAS
+### 4. NAS-Bereitstellung auf einer Synology NAS
 
-1. Open the Synology **Package Center** and install **Web Station**, **PHP (v7.x or higher)**, and **MariaDB**.
-2. Upload the files using File Station or SFTP:
+1. Öffnen Sie das Synology **Paket-Zentrum** und installieren Sie die **Web Station**, **PHP (v7.x oder höher)** sowie **MariaDB**.
+2. Laden Sie die Dateien über die File Station oder per SFTP hoch:
 
-* Drop all files from the `/htdocs` directory directly into the `/web` root share directory.
-* Upload the `/vendor` folder directly to `/web/vendor`.
-* Place `backup_cron.php`, `config.php`, and `setup.php` into the root `/web` directory.
+* Legen Sie alle Dateien aus dem Verzeichnis `/htdocs` direkt im gemeinsamen Stammverzeichnis `/web` ab.
+* Laden Sie den Ordner `/vendor` direkt nach `/web/vendor` hoch.
+* Platzieren Sie `backup_cron.php`, `config.php` und `setup.php` im Stammverzeichnis `/web`.
 
 ---
 
-## Automated First-Time Setup
+## Automatische Ersteinrichtung
 
-The environment initializes its relational schema tables and configurations through a built-in graphical installer wizard:
+Die Umgebung initialisiert ihre relationalen Schematabellen und Konfigurationen nahtlos über einen integrierten grafischen Installationsassistenten:
 
-1. Open your web browser and target your deployment's setup script path:
+1. Öffnen Sie Ihren Webbrowser und rufen Sie den Pfad des Setup-Skripts Ihrer Installation auf:
 
-* **Local Environment:** `http://localhost/setup.php`
-* **Server / NAS Instance:** `http://<YOUR-SERVER-IP>/setup.php`
+* **Lokale Umgebung:** `http://localhost/setup.php`
+* **Server- / NAS-Instanz:** `http://<IHRE-SERVER-IP>/setup.php`
 
-2. Follow the prompt instructions in the graphical installer interface. The system will automatically build out the relational constraints, compile the tables, and serialize your live database environment variables into `config.php`.
-3. **CRITICAL SECURITY NOTE:** Once the installer announces a successful environment configuration, **immediately remove the deployment script from your server** to prevent unauthorized configuration re-initialization exploits:
+2. Folgen Sie den Anweisungen in der grafischen Benutzeroberfläche des Installers. Das System erstellt automatisch die relationalen Beschränkungen (Constraints), generiert die Tabellen und serialisiert Ihre aktiven Datenbank-Umgebungsvariablen in die `config.php`.
+3. **KRITISCHER SICHERHEITSHINWEIS:** Sobald der Installer eine erfolgreiche Konfiguration der Umgebung meldet, **entfernen Sie das Installationsskript unverzüglich von Ihrem Server**, um unbefugte Reinitialisierungsversuche der Datenbank zu verhindern:
 
-* **Windows Environment:** Delete `setup.php` via File Explorer or command line.
-* **Linux Environment:** Execute `sudo rm /var/www/html/setup.php`
-
+* **Windows-Umgebung:** Löschen Sie `setup.php` über den Datei-Explorer oder die Befehlszeile.
+* **Linux-Umgebung:** Führen Sie `sudo rm /var/www/html/setup.php` aus.
