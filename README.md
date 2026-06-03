@@ -1,8 +1,4 @@
-Hier ist die überarbeitete Version der `README.md` komplett ohne Emojis. Ich habe die Erklärungen zur `config.php` sowie zu den Dokumentenvorlagen im `/docx`-Ordner als eigenständige, professionelle Abschnitte auf Englisch hinzugefügt.
 
-Du kannst den Inhalt aus dem folgenden Code-Block ganz einfach kopieren und in deine Datei einfügen:
-
-```markdown
 # Project & Customer Management System
 
 A bespoke, high-performance web platform tailored for managing projects, clients, time tracking, and automated invoicing. Built with native PHP and a relational SQL database using PDO, this application has undergone extensive security hardening and architectural refactoring to meet modern production and enterprise standards.
