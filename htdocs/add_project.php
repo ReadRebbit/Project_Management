@@ -104,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $pNum = time();
+    $createdDate = date("Y-m-d"); // NEU: Erzeugt das richtige Format (z.B. 2026-05-01)
     $checked = "running";
     $settingQ = "SELECT setting FROM settings WHERE setting_type = 'hourly_wage'";
     $setting = $mysql->query($settingQ)->fetchColumn();
@@ -111,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $insertQuery = "INSERT INTO `order` (order_id, order_project_id, order_order, order_amount, order_hourly_wage, order_checked) 
     VALUES (:id, :project, :name, :address, :hourly_wage, :checked)";
     $stmt = $mysql->prepare($insertQuery);
-    $stmt->bindParam(':id', $pNum);
+    $stmt->bindParam(':id', $pNum); // Bleibt als eindeutige ID für die Order
     $stmt->bindParam(':project', $projectId);
     $stmt->bindParam(':name', $projectOrder);
     $stmt->bindParam(':address', $projectAmount);
@@ -129,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bindParam(':project_description', $projectDescription);
     $stmt->bindParam(':user', $user);
     $stmt->bindParam(':due_date', $dueDate);
-    $stmt->bindParam(':created_date', $pNum);
+    $stmt->bindParam(':created_date', $createdDate); // GEÄNDERT: Nutzt jetzt das saubere Y-m-d Format statt des Timestamps
     $stmt->execute();
 
 
