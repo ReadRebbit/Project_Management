@@ -5,7 +5,7 @@
     gap: 10px; /* Abstand zwischen den Elementen */
     padding: 10px; /* Innenabstand */
     box-sizing: border-box; /* Padding und Border in der Breite einbeziehen */
-    max-width: 1850px; /* Maximale Breite für den Container */
+    max-width: 1900px; /* Maximale Breite für den Container */
     margin-left: 10px; /* Abstand vom linken Rand */
     margin-bottom: 10px; /* Abstand vom oberen Rand */
     background-color: #f9f9f9; /* Hintergrundfarbe für einen sanften Look */
